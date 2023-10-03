@@ -1,22 +1,21 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import MenuBar from './components/MenuBar.vue'
 </script>
 
 <template>
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <div class="grid grid-cols-8 gap-4 h-screen">
+    <!-- Left Section -->
+    <div class="col-span-1 bg-gray-200">
+      <MenuBar />
     </div>
-  </header> -->
 
+    <!-- Center Section -->
+    <div class="col-span-5 bg-gray-300">Center</div>
 
-
+    <!-- Right Section -->
+    <div class="col-span-2 bg-gray-200">Right</div>
+  </div>
   <RouterView />
 </template>
 
