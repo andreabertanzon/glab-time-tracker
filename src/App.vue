@@ -6,7 +6,7 @@ import MenuBar from './components/MenuBar.vue'
 <template>
   <div class="grid grid-cols-8 gap-4 h-screen">
     <!-- Left Section -->
-    <div class="col-span-1 bg-gray-200">
+    <div class="col-span-1 bg-gray-200 rounded-r-xl">
       <MenuBar />
     </div>
 
