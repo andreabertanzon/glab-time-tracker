@@ -1,22 +1,30 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import MenuBar from './components/MenuBar.vue'
+import RecapContainer from './components/RecapContainer.vue'
 </script>
 
 <template>
-  <div class="grid grid-cols-8 gap-4 h-screen">
+  <div class="grid grid-cols-12 gap-4 h-screen">
     <!-- Left Section -->
-    <div class="col-span-1 bg-gray-200 rounded-r-xl">
-      <MenuBar />
-    </div>
 
     <!-- Center Section -->
-    <div class="col-span-5 bg-gray-300">Center</div>
+    <div class="col-span-8">
+      <div class="flex flex-row">
+        <div class="flex-2 px-2 mr-2 bg-slate-500 rounded-r-xl">
+          <MenuBar />
+        </div>
+        <div class="flex-1 h-screen">
+          <RouterView />
+        </div>
+      </div>
+    </div>
 
     <!-- Right Section -->
-    <div class="col-span-2 bg-gray-200">Right</div>
+    <div class="col-span-4">
+      <RecapContainer />
+    </div>
   </div>
-  <RouterView />
 </template>
 
 <style scoped>
@@ -60,16 +68,6 @@ nav a:first-of-type {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
   }
 
   nav {

@@ -12,5 +12,20 @@
 
 body {
   min-height: 100vh;
+  font-family: Roboto;
   
 }
+
+h1{
+  font-family: Roboto;
+  font-size: xx-large;
+}
+
+h2{
+  font-size: x-large;
+}
+
+h3{
+  font-size: large;
+}
+
