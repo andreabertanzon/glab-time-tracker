@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import AddIssue from '../components/AddIssue.vue'
 import { type GitlabIssue } from '../classes/GitlabIssue'
 import { useIssueStore } from '../stores/issueStore'
+import IssueCard from '../components/IssueCard.vue'
 
 // DATA
 const issueStore = useIssueStore()
@@ -50,22 +51,19 @@ const handleModalClose = (data: GitlabIssue | null) => {
         <AddIssue :isOpen="showModal" :onClose="handleModalClose"></AddIssue>
       </div>
       <!-- List of issues to track -->
-      <div class="border-2 border-yellow-300 row-span-6">
+      <div class="row-span-6">
         <ul>
-          <li v-for="issue in issues" :key="issue.issueNumber">
-            <div class="flex flex-row">
-              <div class="flex-1">
-                <h3>{{ issue.issueTitle }}</h3>
-              </div>
-              <div class="flex-1">
-                <p>Time Spent: {{ issue.timeSpent }}</p>
-              </div>
-            </div>
+          <li
+            v-for="issue in issues"
+            :key="issue.issueNumber"
+            class="border-1 bg-card-dark p-4 rounded-xl m-2"
+          >
+            <IssueCard :issue="issue" />
           </li>
         </ul>
       </div>
-      <div class="border-2 border-yellow-600 row-span-3">
-        <h3>Time Tracking Component</h3>
+      <div class="border-2 rounded-xl bg-card-yellow row-span-3">
+        <h3 class="text-container-dark">Time Tracking Component</h3>
       </div>
     </div>
   </main>

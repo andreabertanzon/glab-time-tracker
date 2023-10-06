@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-if="isOpen"
-    class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70"
-    @click="closeModal"
-  >
+  <div v-if="isOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
     <div
       class="relative bg-container-dark border-2 border-white p-5 rounded-lg max-w-md w-full"
       @click.stop
@@ -26,6 +22,11 @@
           placeholder="Title"
           class="border rounded p-2 w-full bg-card-dark"
         />
+        <input
+          v-model="formData.projectNumber"
+          placeholder="Project Number"
+          class="border rounded my-2 p-2 w-full bg-card-dark"
+        />
         <button type="submit" class="mt-3 bg-blue-500 text-white p-2 rounded">Submit</button>
       </form>
     </div>
@@ -45,12 +46,19 @@ const props = defineProps({
 // define isOpen as a reactive property
 const { isOpen } = toRefs(props)
 
-const formData = ref({ issueNumber: '', issueTitle: '', timeSpent: 0 } as GitlabIssue)
+const formData = ref({
+  issueNumber: '',
+  issueTitle: '',
+  projectNumber: '',
+  timeSpent: 0
+} as GitlabIssue)
 
 const submitForm = () => {
   if (props.onClose) {
     props.onClose(formData.value)
   }
+
+  formData.value = { issueNumber: '', issueTitle: '', timeSpent: 0, projectNumber: '' }
 }
 
 const closeModal = () => {

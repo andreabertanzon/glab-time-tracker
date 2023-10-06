@@ -6,7 +6,8 @@ module.exports = {
       backgroundColor: {
         'container-dark': '#1E1E1E',
         'container-blue': '#C8E3E4',
-        'card-dark': '#414141'
+        'card-dark': '#414141',
+        'card-yellow': '#F4D27A'
       },
       textColor: {
         'container-dark': '#414141'
