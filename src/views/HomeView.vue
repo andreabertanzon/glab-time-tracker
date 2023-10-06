@@ -43,9 +43,10 @@ const handleModalClose = (data: GitlabIssue | null) => {
   <main>
     <!-- Top section with add command -->
     <div class="grid grid-rows-10 gap-2 h-screen">
-      <div class="border-2 border-yellow-100 row-span-1">
-        <h3>Add Issue</h3>
-        <button @click="showModal = true">CTRL+A</button>
+      <div class="flex flex-row align-middle self-center row-span-1">
+        <div class="border-white border-2 rounded-md p-4" @click.prevent="showModal = true">
+          <p>CTRL + A</p>
+        </div>
         <AddIssue :isOpen="showModal" :onClose="handleModalClose"></AddIssue>
       </div>
       <!-- List of issues to track -->

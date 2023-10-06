@@ -1,6 +1,6 @@
 <template>
   <div>
-    <i class="fa fa-brands fa-gitlab text-5xl"></i>
+    <i class="fa fa-brands fa-gitlab text-4xl text-container-dark"></i>
   </div>
 </template>
 

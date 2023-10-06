@@ -11,7 +11,7 @@ import RecapContainer from './components/RecapContainer.vue'
     <!-- Center Section -->
     <div class="col-span-8">
       <div class="flex flex-row">
-        <div class="flex-2 px-2 mr-2 bg-slate-500 rounded-r-xl">
+        <div class="flex-2 px-2 mr-2 bg-container-blue rounded-r-xl">
           <MenuBar />
         </div>
         <div class="flex-1 h-screen">

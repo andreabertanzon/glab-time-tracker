@@ -4,23 +4,27 @@
     class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70"
     @click="closeModal"
   >
-    <div class="relative bg-white p-5 rounded-lg max-w-md w-full" @click.stop>
+    <div
+      class="relative bg-container-dark border-2 border-white p-5 rounded-lg max-w-md w-full"
+      @click.stop
+    >
       <button
         @click="closeModal"
-        class="absolute top-2 right-2 p-1 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none"
+        class="absolute top-2 right-2 p-1 bg-card-dark rounded-full hover:bg-gray-300 focus:outline-none"
       >
         X
       </button>
+      <p class="text-xl text-white">Add Issue</p>
       <form @submit.prevent="submitForm">
         <input
           v-model="formData.issueNumber"
           placeholder="Issue Number"
-          class="border rounded p-2 w-full"
+          class="border rounded my-2 p-2 w-full bg-card-dark"
         />
         <input
           v-model="formData.issueTitle"
           placeholder="Title"
-          class="border rounded p-2 w-full"
+          class="border rounded p-2 w-full bg-card-dark"
         />
         <button type="submit" class="mt-3 bg-blue-500 text-white p-2 rounded">Submit</button>
       </form>
