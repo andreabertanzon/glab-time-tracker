@@ -43,15 +43,15 @@ const handleModalClose = (data: GitlabIssue | null) => {
 <template>
   <main>
     <!-- Top section with add command -->
-    <div class="grid grid-rows-10 gap-2 h-screen">
-      <div class="flex flex-row align-middle self-center row-span-1">
+    <div class="flex flex-col h-screen justify-start">
+      <div class="flex flex-row align-middle self-center w-full my-4 mx-4">
         <div class="border-white border-2 rounded-md p-4" @click.prevent="showModal = true">
           <p>CTRL + A</p>
         </div>
         <AddIssue :isOpen="showModal" :onClose="handleModalClose"></AddIssue>
       </div>
       <!-- List of issues to track -->
-      <div class="row-span-6">
+      <div class="overflow-auto flex flex-col w-full">
         <ul>
           <li
             v-for="issue in issues"
@@ -61,9 +61,6 @@ const handleModalClose = (data: GitlabIssue | null) => {
             <IssueCard :issue="issue" />
           </li>
         </ul>
-      </div>
-      <div class="border-2 rounded-xl bg-card-yellow row-span-3">
-        <h3 class="text-container-dark">Time Tracking Component</h3>
       </div>
     </div>
   </main>

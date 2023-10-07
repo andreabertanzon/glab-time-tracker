@@ -9,7 +9,7 @@ import RecapContainer from './components/RecapContainer.vue'
     <!-- Left Section -->
 
     <!-- Center Section -->
-    <div class="col-span-8">
+    <div class="col-span-7">
       <div class="flex flex-row">
         <div class="flex-2 px-4 mr-6 bg-container-blue rounded-r-xl">
           <MenuBar />
@@ -21,7 +21,7 @@ import RecapContainer from './components/RecapContainer.vue'
     </div>
 
     <!-- Right Section -->
-    <div class="col-span-4">
+    <div class="col-span-5">
       <RecapContainer />
     </div>
   </div>
