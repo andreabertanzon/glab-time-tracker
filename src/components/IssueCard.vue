@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <div class="flex flex-col content-center">
+  <div class="issue-card">
+    <div class="flex flex-col content-center h-full">
       <div class="flex-1">
-        <h3 class="issue-title">#{{ `${issue.issueNumber}: ${issue.issueTitle}` }}</h3>
+        <h3 class="issue-title truncate" :title="`${issue.issueNumber}: ${issue.issueTitle}`">
+          #{{ `${issue.issueNumber}: ${issue.issueTitle}` }}
+        </h3>
       </div>
       <div class="flex-1 flex justify-start">
         <button disabled="true" class="m-1">
@@ -22,17 +24,20 @@
   </div>
 </template>
 
+<style scoped>
+.issue-card {
+  width: 320px; /* adjust as needed */
+  height: 100px; /* adjust as needed */
+  overflow: hidden;
+}
+.issue-title {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
 <script setup lang="ts">
 import { type GitlabIssue } from '../classes/GitlabIssue'
 
 const { issue } = defineProps<{ issue: GitlabIssue }>()
 </script>
-
-<style scoped>
-.issue-title {
-  max-width: 100%; /* or any other width you find appropriate */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-</style>

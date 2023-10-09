@@ -51,12 +51,12 @@ const handleModalClose = (data: GitlabIssue | null) => {
         <AddIssue :isOpen="showModal" :onClose="handleModalClose"></AddIssue>
       </div>
       <!-- List of issues to track -->
-      <div class="overflow-auto flex flex-col w-full">
-        <ul>
+      <div class="overflow-auto w-full">
+        <ul class="flex flex-row flex-wrap">
           <li
             v-for="issue in issues"
             :key="issue.issueNumber"
-            class="border-1 bg-card-dark p-4 rounded-xl m-2"
+            class="border-1 bg-card-dark p-4 rounded-xl my-2 mr-4"
           >
             <IssueCard :issue="issue" />
           </li>
