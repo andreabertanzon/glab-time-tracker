@@ -38,6 +38,12 @@ const handleModalClose = (data: GitlabIssue | null) => {
     issueStore.addIssue(data)
   }
 }
+
+// ISSUES
+const trackIssue = (issue: GitlabIssue) => {
+  console.log('Tracking issue', issue)
+  issueStore.trackIssue(issue.issueNumber)
+}
 </script>
 
 <template>
@@ -58,7 +64,7 @@ const handleModalClose = (data: GitlabIssue | null) => {
             :key="issue.issueNumber"
             class="border-1 bg-card-dark p-4 rounded-xl my-2 mr-4"
           >
-            <IssueCard :issue="issue" />
+            <IssueCard :issue="issue" :track="trackIssue" />
           </li>
         </ul>
       </div>

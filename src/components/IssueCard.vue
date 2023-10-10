@@ -13,7 +13,7 @@
         <button disabled="true" class="m-2">
           <i class="fa fa-solid fa-star text-xl"></i> {{ issue.projectNumber }}
         </button>
-        <button @click.prevent="console.log('clicked')" class="m-2">
+        <button @click.prevent="trackIssue" class="m-2">
           <i class="fa fa-solid fa-bookmark text-l"> Track </i>
         </button>
         <button @click.prevent="console.log('clicked')" class="m-2">
@@ -39,5 +39,10 @@
 <script setup lang="ts">
 import { type GitlabIssue } from '../classes/GitlabIssue'
 
-const { issue } = defineProps<{ issue: GitlabIssue }>()
+const { issue, track } = defineProps<{ issue: GitlabIssue; track: Function }>()
+
+const trackIssue = () => {
+  console.log('Tracking issue', issue.issueNumber)
+  track(issue)
+}
 </script>
