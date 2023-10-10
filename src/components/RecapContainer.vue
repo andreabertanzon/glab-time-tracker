@@ -1,7 +1,8 @@
 <template>
   <div>Recap Container</div>
   <p>{{ issue ?? 'No Issue Tracked' }}</p>
-  <button v-show="currentlyTracking" @click.prevent="stopTracking">Stop Tracking</button>
+  <button v-show="currentlyTracking && issue" @click.prevent="stopTracking">Stop Tracking</button>
+  <button v-show="!currentlyTracking && issue" @click.prevent="stopTracking">Start Tracking</button>
 </template>
 
 <script setup lang="ts">
