@@ -46,7 +46,6 @@ export const useIssueStore = defineStore({
       } else {
         clearInterval(this.currentIssueIntervalId!)
         this.currentIssueIntervalId = null
-        this.currentIssueSeconds = 0
       }
     }
   }

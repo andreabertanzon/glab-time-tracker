@@ -1,13 +1,20 @@
 <template>
   <div>Recap Container</div>
-  <p>{{ issue ?? 'No Issue Tracked' }}</p>
-  <button v-show="currentlyTracking && issue" @click.prevent="stopTracking">Stop Tracking</button>
-  <button v-show="!currentlyTracking && issue" @click.prevent="stopTracking">Start Tracking</button>
-  <p>{{ formattedTime }}</p>
+  <div class="border-2 rounded-lg p-4">
+    <p>{{ issue?.issueTitle ?? 'No Issue Tracked' }}</p>
+    <button
+      class="border-2 rounded-lg border-white my-1 p-2"
+      v-show="issue"
+      @click.prevent="stopTracking"
+    >
+      {{ currentlyTracking ? 'Stop Tracking' : 'Start Tracking' }}
+    </button>
+    <p>{{ formattedTime }}</p>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useIssueStore } from '../stores/issueStore'
 
 // DATA
