@@ -10,7 +10,7 @@ module.exports = {
         'card-yellow': '#F4D27A'
       },
       textColor: {
-        'container-dark': '#414141'
+        'container-dark': '#414141',
       }
     }
   },

@@ -6,17 +6,17 @@
           #{{ `${issue.issueNumber}: ${issue.issueTitle}` }}
         </h3>
       </div>
-      <div class="flex-1 flex justify-start">
-        <button disabled="true" class="m-1">
+      <div class="flex-1 flex justify-center">
+        <button disabled="true" class="m-4">
           <i class="fa fa-solid fa-clock text-xl"></i> {{ issue.timeSpent }}
         </button>
-        <button disabled="true" class="m-2">
+        <button disabled="true" class="m-4">
           <i class="fa fa-solid fa-star text-xl"></i> {{ issue.projectNumber }}
         </button>
-        <button @click.prevent="trackIssue" class="m-2">
+        <button @click.prevent="trackIssue" class="m-4">
           <i class="fa fa-solid fa-bookmark text-l"> Track </i>
         </button>
-        <button @click.prevent="console.log('clicked')" class="m-2">
+        <button @click.prevent="console.log('clicked')" class="m-4">
           <i class="fa fa-solid fa-paper-plane text-l"> Send</i>
         </button>
       </div>
@@ -26,7 +26,7 @@
 
 <style scoped>
 .issue-card {
-  width: 320px; /* adjust as needed */
+  width: 380px; /* adjust as needed */
   height: 100px; /* adjust as needed */
   overflow: hidden;
 }
