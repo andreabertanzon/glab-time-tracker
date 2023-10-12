@@ -6,14 +6,22 @@ export const useIssueStore = defineStore({
   state: () => ({
     issues: [] as GitlabIssue[],
     currentlyTrackedIssue: null as GitlabIssue | null,
-    currentlyTracking: false
+    currentlyTracking: false,
+    currentIssueSeconds: 0,
+    currentIssueIntervalId: null as NodeJS.Timeout | null
   }),
   getters: {
     getTrackedIssue: (state) => state.currentlyTrackedIssue,
     getIssues: (state) => state.issues,
     getCurrentlyTracking: (state) => state.currentlyTracking,
     getIssueById: (state) => (issueNumber: string) =>
-      state.issues.find((issue) => issue.issueNumber === issueNumber)
+      state.issues.find((issue) => issue.issueNumber === issueNumber),
+    getFormattedTime: (state) => {
+      const hours = Math.floor(state.currentIssueSeconds / 3600)
+      const minutes = Math.floor((state.currentIssueSeconds % 3600) / 60)
+      const seconds = Math.floor((state.currentIssueSeconds % 3600) % 60)
+      return `${hours}:${minutes}:${seconds}`
+    }
   },
   actions: {
     addIssue(issue: GitlabIssue) {
@@ -24,12 +32,22 @@ export const useIssueStore = defineStore({
       this.issues[issueIndex].timeSpent += time
     },
     trackIssue(issueNumber: string) {
+      this.currentIssueSeconds = 0
       const issueIndex = this.issues.findIndex((issue) => issue.issueNumber === issueNumber)
       this.currentlyTrackedIssue = this.issues[issueIndex]
-      this.currentlyTracking = true
+      // this.currentlyTracking = true
     },
     toggleTracking() {
       this.currentlyTracking = !this.currentlyTracking
+      if (this.currentlyTracking) {
+        this.currentIssueIntervalId = setInterval(() => {
+          this.currentIssueSeconds++
+        }, 1000)
+      } else {
+        clearInterval(this.currentIssueIntervalId!)
+        this.currentIssueIntervalId = null
+        this.currentIssueSeconds = 0
+      }
     }
   }
 })
