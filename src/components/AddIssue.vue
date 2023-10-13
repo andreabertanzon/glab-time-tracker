@@ -15,17 +15,17 @@
         <input
           v-model="formData.issueNumber"
           placeholder="Issue Number"
-          class="border rounded my-2 p-2 w-full bg-card-dark"
+          class="border rounded my-2 p-2 w-full bg-input-dark"
         />
         <input
           v-model="formData.issueTitle"
           placeholder="Title"
-          class="border rounded p-2 w-full bg-card-dark"
+          class="border rounded p-2 w-full bg-input-dark"
         />
         <input
           v-model="formData.projectNumber"
           placeholder="Project Number"
-          class="border rounded my-2 p-2 w-full bg-card-dark"
+          class="border rounded my-2 p-2 w-full bg-input-dark"
         />
         <button type="submit" class="mt-3 bg-blue-500 text-white p-2 rounded">Submit</button>
       </form>

@@ -62,7 +62,7 @@ const trackIssue = (issue: GitlabIssue) => {
           <li
             v-for="issue in issues"
             :key="issue.issueNumber"
-            class="border-1 bg-card-dark p-4 rounded-xl my-2 mr-4"
+            class="border-1 bg-tertiary-container text-on-tertiary-container p-4 rounded-xl my-2 mr-4"
           >
             <IssueCard :issue="issue" :track="trackIssue" />
           </li>

@@ -1,16 +1,25 @@
 <template>
   <div class="mr-4">
     <h1>Recaps</h1>
-    <div class="rounded-lg p-4 bg-card-yellow text-container-dark h-80">
+    <div class="rounded-lg p-4 bg-secondary-container h-96 text-on-tertiary-container">
       <div class="flex justify-center" v-if="!issue">
-        <h1>No Issue Tracked</h1>
+        <h1 class="text-on-secondary-container">No Issue Tracked</h1>
       </div>
       <div class="flex flex-col justify-center align-middle" v-else>
-        <h2>{{ issue.issueTitle }}</h2>
-        <h1 class="mt-10 text-6xl self-center">{{ formattedTime }}</h1>
+        <h1 class="mt-10 text-6xl self-center text-on-secondary-container">{{ formattedTime }}</h1>
         <button class="p-2 my-6" v-show="issue" @click.prevent="stopTracking">
-          <span class="material-icons text-8xl">{{ trackingStyle }}</span>
+          <span class="material-icons text-8xl text-on-secondary-container">{{
+            trackingStyle
+          }}</span>
         </button>
+        <div class="flex my-1">
+          <span class="material-icons">sell</span>
+          <h4 class="mx-2">{{ issue.issueNumber }}</h4>
+        </div>
+        <div class="flex">
+          <span class="material-icons">badge</span>
+          <h4 class="mx-2">{{ issue.issueTitle }}</h4>
+        </div>
       </div>
     </div>
   </div>
