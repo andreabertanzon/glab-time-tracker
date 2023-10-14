@@ -2,6 +2,7 @@ import { OperationResult } from '@/classes/OperationResult'
 import { Unit } from '@/classes/Unit'
 import axios from 'axios'
 import { type GitlabProject, GitlabProjectSchema } from '@/classes/GitlabProject'
+import { convertTimeToDecimalHours } from '@/helpers/timeFormatter'
 
 export class GitlabService {
   constructor() {}
@@ -29,13 +30,14 @@ export class GitlabService {
 
   public async updateIssueTimeTracking(
     projId: number,
-    duration: number,
+    duration: string,
     originalDate: Date
   ): Promise<OperationResult<Unit>> {
     try {
       // create a variable that holds the current date (only date, not time)
       const dateString = originalDate.toISOString().split('T')[0]
-      const durationString = `${duration}h`
+      const decimalDuration = convertTimeToDecimalHours(duration)
+      const durationString = `${decimalDuration}h`
 
       // Update the issue with the new time tracking data
       await axios.post(

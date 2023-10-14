@@ -7,4 +7,9 @@ function formatTime(inputSeconds: number): string {
   return `${hours}:${minutesString}:${secondsString}`
 }
 
-export { formatTime }
+function convertTimeToDecimalHours(time: string): number {
+  const [hours, minutes, _] = time.split(':')
+  return Number(hours) + Number(minutes) / 60
+}
+
+export { formatTime, convertTimeToDecimalHours }
