@@ -22,7 +22,7 @@ module.exports = {
         'on-error-container': '#ffdad6',
         background: '#191c1c',
         'on-background': '#e0e3e3',
-        surface: '#ff0000',
+        surface: '#191c1c',
         'on-surface': '#e0e3e3',
         'surface-variant': '#3f4949',
         'on-surface-variant': '#bec8c9',
