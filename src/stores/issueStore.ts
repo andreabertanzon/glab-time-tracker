@@ -20,7 +20,9 @@ export const useIssueStore = defineStore({
       const hours = Math.floor(state.currentIssueSeconds / 3600)
       const minutes = Math.floor((state.currentIssueSeconds % 3600) / 60)
       const seconds = Math.floor((state.currentIssueSeconds % 3600) % 60)
-      return `${hours}:${minutes}:${seconds}`
+      const secondsString = seconds < 10 ? `0${seconds}` : seconds
+      const minutesString = minutes < 10 ? `0${minutes}` : minutes
+      return `${hours}:${minutesString}:${secondsString}`
     }
   },
   actions: {
