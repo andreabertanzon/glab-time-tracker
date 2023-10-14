@@ -8,7 +8,7 @@
       </div>
       <div class="flex-1 flex justify-center">
         <button disabled="true" class="m-4">
-          <i class="fa fa-solid fa-clock text-xl"></i> {{ issue.timeSpent }}
+          <i class="fa fa-solid fa-clock text-xl"></i> {{ formattedTime }}
         </button>
         <button disabled="true" class="m-4">
           <i class="fa fa-solid fa-star text-xl"></i> {{ issue.projectNumber }}
@@ -37,9 +37,12 @@
 }
 </style>
 <script setup lang="ts">
+import { computed } from 'vue'
 import { type GitlabIssue } from '../classes/GitlabIssue'
+import { formatTime } from '../helpers/timeFormatter'
 
 const { issue, track } = defineProps<{ issue: GitlabIssue; track: Function }>()
+const formattedTime = computed(() => formatTime(issue.timeSpent))
 
 const trackIssue = () => {
   console.log('Tracking issue', issue.issueNumber)

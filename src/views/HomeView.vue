@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 import { ref } from 'vue'
 import AddIssue from '../components/AddIssue.vue'
 import { type GitlabIssue } from '../classes/GitlabIssue'
@@ -8,7 +8,7 @@ import IssueCard from '../components/IssueCard.vue'
 
 // DATA
 const issueStore = useIssueStore()
-const issues = issueStore.getIssues
+const issues = computed(() => issueStore.getIssues)
 
 // listen for when a user presses CTRL+A
 const ctrlAEventListen = (e: KeyboardEvent): void => {

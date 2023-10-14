@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { type GitlabIssue } from '@/classes/GitlabIssue'
+import { formatTime } from '@/helpers/timeFormatter'
 
 export const useIssueStore = defineStore({
   id: 'issueStore',
@@ -17,12 +18,7 @@ export const useIssueStore = defineStore({
     getIssueById: (state) => (issueNumber: string) =>
       state.issues.find((issue) => issue.issueNumber === issueNumber),
     getFormattedTime: (state) => {
-      const hours = Math.floor(state.currentIssueSeconds / 3600)
-      const minutes = Math.floor((state.currentIssueSeconds % 3600) / 60)
-      const seconds = Math.floor((state.currentIssueSeconds % 3600) % 60)
-      const secondsString = seconds < 10 ? `0${seconds}` : seconds
-      const minutesString = minutes < 10 ? `0${minutes}` : minutes
-      return `${hours}:${minutesString}:${secondsString}`
+      return formatTime(state.currentIssueSeconds)
     }
   },
   actions: {
@@ -34,8 +30,15 @@ export const useIssueStore = defineStore({
       this.issues[issueIndex].timeSpent += time
     },
     trackIssue(issueNumber: string) {
-      this.currentIssueSeconds = 0
       const issueIndex = this.issues.findIndex((issue) => issue.issueNumber === issueNumber)
+      if (this.currentlyTrackedIssue !== null) {
+        const oldIssueIndex = this.issues.findIndex(
+          (issues) => issues.issueNumber === this.currentlyTrackedIssue?.issueNumber
+        )
+        const timeSpent = this.currentIssueSeconds - this.issues[oldIssueIndex].timeSpent
+        this.issues[oldIssueIndex].timeSpent += timeSpent
+      }
+      this.currentIssueSeconds = this.issues[issueIndex].timeSpent
       this.currentlyTrackedIssue = this.issues[issueIndex]
       // this.currentlyTracking = true
     },
