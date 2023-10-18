@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { type GitlabIssue } from '@/classes/GitlabIssue'
 import { formatTime } from '@/helpers/timeFormatter'
-import { time } from 'console'
 
 export const useIssueStore = defineStore({
   id: 'issueStore',
@@ -15,6 +14,12 @@ export const useIssueStore = defineStore({
   getters: {
     getTrackedIssue: (state) => state.currentlyTrackedIssue,
     getIssues: (state) => state.issues,
+    /**
+     * Represents all those issues that can be saved or sent to gitlab since
+     * they have a timeSpentHumanReadable value and hence a spent time value.
+     * @param state internal state of the store
+     * @returns filtered issues that are ready to be sent to the backend
+     */
     getReadyToSendIssues: (state) =>
       state.issues.filter((issue) => issue.timeSpentHumanReadable !== null),
     getCurrentlyTracking: (state) => state.currentlyTracking,
@@ -25,13 +30,26 @@ export const useIssueStore = defineStore({
     }
   },
   actions: {
+    /**
+     * GitLab issues are stored in an array, this method adds an issue to the store
+     * @param issue the issue to add to the store (issue array)
+     */
     addIssue(issue: GitlabIssue) {
       this.issues.push(issue)
     },
+    /**
+     * this method adds time to an issue
+     * @param issueNumber number of the issue to add time to
+     * @param time time spent to add to the issue
+     */
     addSpentTime(issueNumber: string, time: number) {
       const issueIndex = this.issues.findIndex((issue) => issue.issueNumber === issueNumber)
       this.issues[issueIndex].timeSpent += time
     },
+    /**
+     * Sets the currently tracked issue
+     * @param issueNumber the issue number to track
+     */
     trackIssue(issueNumber: string) {
       const issueIndex = this.issues.findIndex((issue) => issue.issueNumber === issueNumber)
       if (this.currentlyTrackedIssue !== null) {
@@ -48,6 +66,9 @@ export const useIssueStore = defineStore({
       this.currentlyTrackedIssue = this.issues[issueIndex]
       // this.currentlyTracking = true
     },
+    /**
+     * Starts or stops the tracking of the current issue
+     */
     toggleTracking() {
       this.currentlyTracking = !this.currentlyTracking
       if (this.currentlyTracking) {
