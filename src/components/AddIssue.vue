@@ -53,7 +53,8 @@ const formData = ref({
   issueNumber: '',
   issueTitle: '',
   projectNumber: '',
-  timeSpent: 0
+  timeSpent: 0,
+  timeSpentHumanReadable: null
 } as GitlabIssue)
 
 const submitForm = () => {
@@ -61,7 +62,13 @@ const submitForm = () => {
     props.onClose(formData.value)
   }
 
-  formData.value = { issueNumber: '', issueTitle: '', timeSpent: 0, projectNumber: '' }
+  formData.value = {
+    issueNumber: '',
+    issueTitle: '',
+    timeSpent: 0,
+    projectNumber: '',
+    timeSpentHumanReadable: null
+  }
 }
 
 const closeModal = () => {

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { type GitlabIssue } from '@/classes/GitlabIssue'
 import { formatTime } from '@/helpers/timeFormatter'
+import { time } from 'console'
 
 export const useIssueStore = defineStore({
   id: 'issueStore',
@@ -14,6 +15,8 @@ export const useIssueStore = defineStore({
   getters: {
     getTrackedIssue: (state) => state.currentlyTrackedIssue,
     getIssues: (state) => state.issues,
+    getReadyToSendIssues: (state) =>
+      state.issues.filter((issue) => issue.timeSpentHumanReadable !== null),
     getCurrentlyTracking: (state) => state.currentlyTracking,
     getIssueById: (state) => (issueNumber: string) =>
       state.issues.find((issue) => issue.issueNumber === issueNumber),
@@ -37,6 +40,9 @@ export const useIssueStore = defineStore({
         )
         const timeSpent = this.currentIssueSeconds - this.issues[oldIssueIndex].timeSpent
         this.issues[oldIssueIndex].timeSpent += timeSpent
+        this.issues[oldIssueIndex].timeSpentHumanReadable = formatTime(
+          this.issues[oldIssueIndex].timeSpent
+        )
       }
       this.currentIssueSeconds = this.issues[issueIndex].timeSpent
       this.currentlyTrackedIssue = this.issues[issueIndex]
@@ -52,6 +58,14 @@ export const useIssueStore = defineStore({
         clearInterval(this.currentIssueIntervalId!)
         this.currentIssueIntervalId = null
       }
+    },
+    /**
+     * This method orchestrate the call to the backend and to Gitlab
+     *
+     * @param issue the GitlabIssue to send both to Gitlab and to the backend
+     */
+    sendIssuesToBackend() {
+      console.log('Sending issue to backend')
     }
   }
 })

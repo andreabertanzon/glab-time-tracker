@@ -4,6 +4,7 @@ const GitlabIssueSchema = z.object({
   issueNumber: z.string(),
   issueTitle: z.string(),
   timeSpent: z.number().positive().default(0),
+  timeSpentHumanReadable: z.string().nullable().default(null),
   projectNumber: z.string()
 })
 

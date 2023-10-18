@@ -1,6 +1,6 @@
 <template>
   <div class="mr-4">
-    <h1>Recaps</h1>
+    <h1>Tracking</h1>
     <div class="rounded-lg p-4 bg-secondary-container h-96 text-on-tertiary-container">
       <div class="flex justify-center" v-if="!issue">
         <h1 class="text-on-secondary-container">No Issue Tracked</h1>
@@ -23,6 +23,24 @@
       </div>
     </div>
   </div>
+  <div v-show="issues.length > 0">
+    <h1>Todays Issues:</h1>
+    <div>
+      <div class="flex flex-row" v-for="issue in issues" :key="issue.issueNumber">
+        <p>{{ issue.issueNumber }}</p>
+        <p>{{ issue.issueTitle }}</p>
+        <p>{{ issue.timeSpentHumanReadable }}</p>
+      </div>
+      <div class="flex flex-row align-middle justify-start">
+        <button class="my-2 mr-2 align-middle border rounded-lg p-2">
+          <span class="material-icons align-middle">save</span> Save
+        </button>
+        <button class="my-2 mr-2 align-middle border rounded-lg p-2" @click.prevent="sendIssues">
+          <span class="material-icons align-middle">send</span> Send
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -33,6 +51,7 @@ import { useIssueStore } from '../stores/issueStore'
 const issueStore = useIssueStore()
 const issue = computed(() => issueStore.getTrackedIssue)
 const formattedTime = computed(() => issueStore.getFormattedTime)
+const issues = computed(() => issueStore.getReadyToSendIssues)
 
 let currentlyTracking = computed(() => issueStore.getCurrentlyTracking)
 let trackingStyle = computed(() => (currentlyTracking.value ? 'pause_circle' : 'play_circle'))
@@ -40,6 +59,10 @@ let trackingStyle = computed(() => (currentlyTracking.value ? 'pause_circle' : '
 const stopTracking = () => {
   console.log('Stop tracking issue')
   issueStore.toggleTracking()
+}
+
+const sendIssues = () => {
+  issueStore.sendIssuesToBackend()
 }
 </script>
 
