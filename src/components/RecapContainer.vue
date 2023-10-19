@@ -26,11 +26,13 @@
   <div v-show="issues.length > 0">
     <h1>Todays Issues:</h1>
     <div>
-      <div class="flex flex-row" v-for="issue in issues" :key="issue.issueNumber">
-        <p>{{ issue.issueNumber }}</p>
-        <p>{{ issue.issueTitle }}</p>
-        <p>{{ issue.timeSpentHumanReadable }}</p>
-      </div>
+      <table>
+        <tr class="border" v-for="issue in issues" :key="issue.issueNumber">
+          <td class="pl-1 pr-4">{{ issue.issueNumber }}</td>
+          <td class="pr-4">{{ issue.issueTitle }}</td>
+          <td class="pr-1">{{ issue.timeSpentHumanReadable }}</td>
+        </tr>
+      </table>
       <div class="flex flex-row align-middle justify-start">
         <button class="my-2 mr-2 align-middle border rounded-lg p-2">
           <span class="material-icons align-middle">save</span> Save

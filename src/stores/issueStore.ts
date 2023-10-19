@@ -52,16 +52,16 @@ export const useIssueStore = defineStore({
      */
     trackIssue(issueNumber: string) {
       const issueIndex = this.issues.findIndex((issue) => issue.issueNumber === issueNumber)
-      if (this.currentlyTrackedIssue !== null) {
-        const oldIssueIndex = this.issues.findIndex(
-          (issues) => issues.issueNumber === this.currentlyTrackedIssue?.issueNumber
-        )
-        const timeSpent = this.currentIssueSeconds - this.issues[oldIssueIndex].timeSpent
-        this.issues[oldIssueIndex].timeSpent += timeSpent
-        this.issues[oldIssueIndex].timeSpentHumanReadable = formatTime(
-          this.issues[oldIssueIndex].timeSpent
-        )
-      }
+      // if (this.currentlyTrackedIssue !== null) {
+      //   const oldIssueIndex = this.issues.findIndex(
+      //     (issues) => issues.issueNumber === this.currentlyTrackedIssue?.issueNumber
+      //   )
+      //   const timeSpent = this.currentIssueSeconds - this.issues[oldIssueIndex].timeSpent
+      //   this.issues[oldIssueIndex].timeSpent += timeSpent
+      //   this.issues[oldIssueIndex].timeSpentHumanReadable = formatTime(
+      //     this.issues[oldIssueIndex].timeSpent
+      //   )
+      // }
       this.currentIssueSeconds = this.issues[issueIndex].timeSpent
       this.currentlyTrackedIssue = this.issues[issueIndex]
       // this.currentlyTracking = true
@@ -78,6 +78,16 @@ export const useIssueStore = defineStore({
       } else {
         clearInterval(this.currentIssueIntervalId!)
         this.currentIssueIntervalId = null
+      }
+      if (this.currentlyTrackedIssue !== null) {
+        const oldIssueIndex = this.issues.findIndex(
+          (issues) => issues.issueNumber === this.currentlyTrackedIssue?.issueNumber
+        )
+        const timeSpent = this.currentIssueSeconds - this.issues[oldIssueIndex].timeSpent
+        this.issues[oldIssueIndex].timeSpent += timeSpent
+        this.issues[oldIssueIndex].timeSpentHumanReadable = formatTime(
+          this.issues[oldIssueIndex].timeSpent
+        )
       }
     },
     /**

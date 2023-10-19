@@ -17,7 +17,7 @@
           <i class="fa fa-solid fa-bookmark text-l"> Track </i>
         </button>
         <button @click.prevent="console.log('clicked')" class="m-4">
-          <i class="fa fa-solid fa-paper-plane text-l"> Send</i>
+          <i class="fa fa-solid fa-circle text-l"> Sync</i>
         </button>
       </div>
     </div>

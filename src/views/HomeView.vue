@@ -54,6 +54,12 @@ const trackIssue = (issue: GitlabIssue) => {
         <div class="border-white border-2 rounded-md p-4" @click.prevent="showModal = true">
           <p>CTRL + A</p>
         </div>
+        <div class="ml-2 border-white border-2 rounded-md p-4" @click.prevent="showModal = true">
+          <p>CTRL + I</p>
+        </div>
+        <div class="ml-2 border-white border-2 rounded-md p-4" @click.prevent="showModal = true">
+          <p>CTRL + K</p>
+        </div>
         <AddIssue :isOpen="showModal" :onClose="handleModalClose"></AddIssue>
       </div>
       <!-- List of issues to track -->
